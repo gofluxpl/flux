@@ -1,98 +1,124 @@
-## Flux Programming Language Specification
+## Specyfikacja języka programowania Flux
 
-**(January 21, 2025)**
+**(21 stycznia 2025)**
 
-This document serves as an informal specification and proposal for a new programming language.
+Ten dokument służy jako nieformalna specyfikacja i propozycja nowego języka programowania.
 
-## Overview
+## Przegląd
 
-Flux is a new programming language designed as an alternative to Go, combined with the scripting capabilities of Bash. Its primary goal is to enable efficient development of compiled programs, such as servers. The language is built with speed and performance in mind, ensuring that the compiler and runtime environment operate with optimal efficiency.
+Flux to nowy język programowania zaprojektowany jako alternatywa dla Go, połączona z możliwościami skryptowymi Bash. Jego głównym celem jest umożliwienie efektywnego tworzenia skompilowanych programów, takich jak serwery. Język został opracowany z myślą o szybkości i wydajności, zapewniając, że kompilator i środowisko wykonawcze działają z optymalną efektywnością.
 
-## Program Description
+## Opis programu
 
-A Flux program consists of one or more packages. Among these, a default package named `main` acts as the entry point of execution. If the `main` package contains a `.init()` function, this function will always be executed before the `.main()` function.
+Program Flux składa się z jednej lub więcej paczek. Wśród nich domyślna paczka o nazwie `main` pełni rolę punktu wejścia programu. Jeśli paczka `main` zawiera funkcję `.init()`, zostanie ona zawsze wykonana przed funkcją `.main()`.
 
-Each compilation unit in Flux is composed of:
+Każda jednostka kompilacji w Flux składa się z:
 
-1. A **package declaration**.
-2. Optional **import statements**.
-   - The number of imported packages does not affect the priority of execution.
+1. **Deklaracji paczki**.
+2. Opcjonalnych **instrukcji importu**.
+   - Liczba zaimportowanych paczek nie wpływa na priorytet ich wykonania.
 
-Flux programs include various elements such as packages (dependent or independent), types, functions, and more. Individual packages can be defined in a separate file, exported for reuse, and explicitly imported into other compilation units.
+Programy Flux obejmują różne elementy, takie jak paczki (zależne lub niezależne), typy, funkcje i inne. Poszczególne paczki można definiować w oddzielnych plikach, eksportować do ponownego wykorzystania i jawnie importować do innych jednostek kompilacji.
 
-The scoping rules in Flux are fundamentally similar to those in Go.
+Zasady zakresu (ang. scoping) w Flux są zasadniczo podobne do tych w Go.
 
-## Key Features
+## Kluczowe cechy
 
-- **Efficient and performant**: Designed for building fast, compiled applications like servers.
-- **Package structure**: Encourages modularity through well-defined packages.
-- **Explicit imports**: Packages must be explicitly imported into each compilation unit where they are used.
+- **Wydajność i efektywność**: Zaprojektowany do tworzenia szybkich, skompilowanych aplikacji, takich jak serwery.
+- **Struktura paczek**: Promuje modularność dzięki dobrze zdefiniowanym paczkom.
+- **Jawne importy**: Paczki muszą być jawnie importowane do każdej jednostki kompilacji, w której są używane.
 
-Flux aims to combine the robustness of Go with the flexibility of Bash, providing developers with a powerful yet lightweight tool for building high-performance software.
+Flux łączy solidność Go z elastycznością Bash, oferując programistom potężne, a jednocześnie lekkie narzędzie do budowy wydajnego oprogramowania.
 
-# Symbol Explanation in Flux
+## Wyjaśnienie symboli w Flux
 
-In Flux, various symbols and operators serve specific purposes in programming. These symbols enable developers to perform arithmetic calculations, assign values, compare data, manipulate logic, and more. This guide provides a concise overview of each operator's role and usage within Flux, showcasing their significance in simplifying and enhancing the coding process.
+W Flux różne symbole i operatory pełnią specyficzne role w programowaniu. Pozwalają one programistom wykonywać obliczenia arytmetyczne, przypisywać wartości, porównywać dane, manipulować logiką i wiele więcej. Ten przewodnik przedstawia zwięzły przegląd roli i zastosowania każdego operatora w Flux, podkreślając ich znaczenie w upraszczaniu i ulepszaniu procesu kodowania.
 
-## Arithmetic Operators
+### Operatory arytmetyczne
 
-- `+` : Addition or string concatenation.
-- `-` : Subtraction.
-- `*` : Multiplication.
-- `/` : Division.
-- `%` : Modulus (remainder).
-- `**` : Exponentiation.
+---
 
-## Assignment Operators
+- `+` : Dodawanie lub konkatenacja ciągów znaków.
+- `-` : Odejmowanie.
+- `*` : Mnożenie.
+- `/` : Dzielenie.
+- `%` : Modulo (reszta z dzielenia).
+- `**` : Potęgowanie.
 
-- `=` : Assign a value.
-- `+=` : Add and assign.
-- `-=` : Subtract and assign.
-- `*=` : Multiply and assign.
-- `/=` : Divide and assign.
-- `%=` : Modulus and assign.
+### Operatory przypisania
 
-## Comparison Operators
+---
 
-- `==` : Loose equality (value only).
-- `===` : Strict equality (value and type).
-- `!=` : Loose inequality (value only).
-- `!==` : Strict inequality (value and type).
-- `>` : Greater than.
-- `<` : Less than.
-- `>=` : Greater than or equal to.
-- `<=` : Less than or equal to.
+- `=` : Przypisanie wartości.
+- `+=` : Dodanie i przypisanie.
+- `-=` : Odjęcie i przypisanie.
+- `*=` : Mnożenie i przypisanie.
+- `/=` : Dzielenie i przypisanie.
+- `%=` : Modulo i przypisanie.
 
-## Logical Operators
+### Operatory porównania
 
-- `&&` : Logical AND.
-- `||` : Logical OR.
-- `!` : Logical NOT.
-- `??` : Nullish coalescing (default value when `null` or `undefined`).
+---
 
-## Bitwise Operators
+- `==` : Luźna równość (tylko wartość).
+- `===` : Ścisła równość (wartość i typ).
+- `!=` : Luźna nierówność (tylko wartość).
+- `!==` : Ścisła nierówność (wartość i typ).
+- `>` : Większe niż.
+- `<` : Mniejsze niż.
+- `>=` : Większe lub równe.
+- `<=` : Mniejsze lub równe.
 
-- `&` : Bitwise AND.
-- `|` : Bitwise OR.
-- `^` : Bitwise XOR.
-- `~` : Bitwise NOT.
-- `<<` : Bitwise left shift.
-- `>>` : Bitwise right shift.
+### Operatory logiczne
 
-## Other Operators
+---
 
-- `()` : Grouping or function invocation.
-- `[]` : Array creation or access to elements.
-- `{}` : Object creation or code block.
-- `typeof` : Check the type of a value.
-- `instanceof` : Check if an object is an instance of a class.
-- `in` : Check if a property exists in an object.
-- `...` : Spread or rest operator.
-- `:` : Used in objects or conditional expressions (`? :`).
+- `&&` : Logiczne AND.
+- `||` : Logiczne OR.
+- `!` : Logiczne NOT.
+- `??` : Koalescencja nullish (wartość domyślna, gdy `null` lub `undefined`).
 
-## Special Use Cases
+### Operatory bitowe
 
-- `?.` : Optional chaining to safely access nested properties.
-- `:` : Object property assignment or part of a ternary operator.
+---
 
-By understanding and leveraging these symbols, developers can write efficient, clean, and robust code. Each operator is a building block of functionality, empowering programmers to solve complex problems and create innovative solutions in Flux. Mastering their usage is a key step toward becoming proficient in this versatile language.
+- `&` : Bitowe AND.
+- `|` : Bitowe OR.
+- `^` : Bitowe XOR.
+- `~` : Bitowe NOT.
+- `<<` : Bitowe przesunięcie w lewo.
+- `>>` : Bitowe przesunięcie w prawo.
+
+### Inne operatory
+
+---
+
+- `()` : Grupowanie lub wywołanie funkcji.
+- `[]` : Tworzenie tablicy lub dostęp do elementów.
+- `{}` : Tworzenie obiektu lub blok kodu.
+- `typeof` : Sprawdzenie typu wartości.
+- `instanceof` : Sprawdzenie, czy obiekt jest instancją klasy.
+- `in` : Sprawdzenie, czy właściwość istnieje w obiekcie.
+- `...` : Operator spread lub rest.
+- `:` : Używany w obiektach lub wyrażeniach warunkowych (`? :`).
+
+Dzięki zrozumieniu i wykorzystaniu tych symboli programiści mogą pisać efektywny, czysty i solidny kod. Każdy operator stanowi element budulcowy funkcjonalności, umożliwiając rozwiązywanie złożonych problemów i tworzenie innowacyjnych rozwiązań w Flux. Opanowanie ich użycia to kluczowy krok w kierunku biegłości w tym wszechstronnym języku.
+
+## Typy zmiennych i danych w Flux
+
+Flux oferuje kilka sposobów zmiennych, takich jak `var`, `let`, `const`.
+Zmienne w Flux można deklarować za pomocą następujących słów kluczowych:
+
+- `var` : Starszy sposób deklarowania zmiennych. Ma zasięg globalny lub funkcyjny (nie blokowy).
+- `let` : Używany do zmiennych z zasięgiem blokowym.
+- `const` : Służy do deklarowania stałych.
+- `int` : Służy do przechowywania liczb całkowitych.
+- `varchar` : Służy do przechowywania krótkich ciągów znaków (tekstowych).
+- `text` : Służy do przechowywania dłuższych ciągów znaków.
+- `boolean` : Służy do przechowywania wartości logicznych (true/false).
+- `json` : Umożliwia przechowywanie danych w formacie JSON (JavaScript Object Notation).
+- `set` : Zbiór unikalnych wartości. Przydatny do przechowywania danych bez duplikatów.
+- `float` : Służy do przechowywania liczb zmiennoprzecinkowych.
+- `map` : Służy do przechowywania par klucz-wartość.
+- `chan` : Kanały służą do komunikacji między goroutines (funkcje współbieżne).
+- `struct` : Struktury umożliwiają definiowanie własnych typów danych, zawierających różne pola.
